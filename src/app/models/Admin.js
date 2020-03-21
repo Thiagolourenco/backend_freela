@@ -25,7 +25,13 @@ const AdminSchema = new Schema(
       type: String,
       required: true,
       default: 0
-    }
+    },
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "commentsschemas"
+      }
+    ]
   },
   { timestamps: true }
 );

@@ -1,6 +1,7 @@
 import User from "../models/User";
 
 class UserController {
+  // Salva os dados do usuário de acordo com o que é salvo pelo google
   async store(req, res) {
     const userExists = await User.findOne({ email: req.body.email });
 
