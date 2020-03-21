@@ -1,7 +1,11 @@
 import Comments from "../models/Comments";
 
 class CommentsController {
-  async index() {}
+  async index(req, res) {
+    const comments = await Comments.find();
+
+    return res.json(comments);
+  }
 
   async store(req, res) {
     const comments = await Comments.create(req.body);

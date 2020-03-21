@@ -28,19 +28,22 @@ const AdminSchema = new Schema(
     filesname: {
       type: String
     },
+    names: {
+      type: String
+    },
     comments: [
       {
         type: Schema.Types.ObjectId,
-        ref: "CommentsSchema"
+        ref: "commentsschemas"
       }
     ]
   },
-  { timestamps: true }
+  { timestamps: true, toObject: { virtuals: true }, toJSON: { virtuals: true } }
 );
 
 AdminSchema.virtual("url").get(function() {
   const url = process.env.URL || "http://localhost:3333";
-  return `${url}/files/${encodeURIComponent(this.path)}`;
+  return `${url}/admin/${encodeURIComponent(this.filesname)}`;
 });
 
 export default model("AdminSchema", AdminSchema);

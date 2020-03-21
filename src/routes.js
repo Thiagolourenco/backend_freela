@@ -23,14 +23,15 @@ routes.post("/admin", upload.single("file"), AdminController.store);
 routes.get("/admin", AdminController.index);
 routes.get("/admin/:name", AdminController.show);
 
-// likes
-routes.post("/comments/:id/like", LikeController.store);
-
 // upload image
 routes.post("/files/:id", FileController.store);
 routes.get("/files", FileController.index);
 
 // comments
 routes.post("/comments", CommentsController.store);
+routes.get("/comments", CommentsController.index);
+
+// likes
+routes.post("/comments/:id/like", LikeController.store);
 
 export default routes;

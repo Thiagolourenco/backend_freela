@@ -23,15 +23,12 @@ class AdminController {
       sports,
       stars
     } = await Admin.create(req.body);
-    const { filename: filesname } = req.file;
-
-    const [name] = filesname.split(".");
-    const fileName = `${name}.jpg`;
+    const { filename: filesname, originalname: names } = req.file;
 
     await sharp(req.file.path)
       .resize(500)
       .jpeg({ quality: 70 })
-      .toFile(resolve(req.file.destination, "resized", fileName));
+      .toFile(resolve(req.file.destination, "resized", filesname));
 
     fs.unlinkSync(req.file.path);
 
@@ -42,7 +39,8 @@ class AdminController {
       country,
       sports,
       stars,
-      filesname: fileName
+      filesname,
+      names
     });
 
     return res.json(adminStore);
