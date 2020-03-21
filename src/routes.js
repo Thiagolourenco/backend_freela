@@ -7,23 +7,28 @@ import UserController from "./app/controllers/UserController";
 import AdminController from "./app/controllers/AdminController";
 import CommentsController from "./app/controllers/CommentsController";
 import FileController from "./app/controllers/FileController";
+import LikeController from "./app/controllers/LikeController";
 
 import multerConfig from "./config/multer";
 
 const routes = new Router();
 
-const uploads = multer(multerConfig);
+const upload = multer(multerConfig);
 
 routes.post("/users", UserController.store);
 
 // admin
 
-routes.post("/admin", AdminController.store);
+routes.post("/admin", upload.single("file"), AdminController.store);
 routes.get("/admin", AdminController.index);
 routes.get("/admin/:name", AdminController.show);
 
+// likes
+routes.post("/comments/:id/like", LikeController.store);
+
 // upload image
-routes.post("/files", uploads.single("**"), FileController.store);
+routes.post("/files/:id", FileController.store);
+routes.get("/files", FileController.index);
 
 // comments
 routes.post("/comments", CommentsController.store);
