@@ -21,6 +21,9 @@ const CommentsSchema = new Schema(
       type: String,
       required: true,
       default: 0
+    },
+    admincomment: {
+      type: String
     }
   },
   {

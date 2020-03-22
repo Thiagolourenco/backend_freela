@@ -30,13 +30,13 @@ const AdminSchema = new Schema(
     },
     names: {
       type: String
-    },
-    comments: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "commentsschemas"
-      }
-    ]
+    }
+    // comments: [
+    //   {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "commentsschemas"
+    //   }
+    // ]
   },
   { timestamps: true, toObject: { virtuals: true }, toJSON: { virtuals: true } }
 );

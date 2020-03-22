@@ -30,6 +30,7 @@ routes.get("/files", FileController.index);
 // comments
 routes.post("/comments", CommentsController.store);
 routes.get("/comments", CommentsController.index);
+routes.get("/comments/:id", CommentsController.show);
 
 // likes
 routes.post("/comments/:id/like", LikeController.store);
