@@ -20,6 +20,7 @@ routes.post("/users", UserController.store);
 // admin
 
 routes.post("/admin", upload.single("file"), AdminController.store);
+// routes.post("/admin", AdminController.store);
 routes.get("/admin", AdminController.index);
 routes.get("/admin/:name", AdminController.show);
 

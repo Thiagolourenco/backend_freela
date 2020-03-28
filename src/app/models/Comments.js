@@ -15,7 +15,8 @@ const CommentsSchema = new Schema(
       required: true
     },
     likes: {
-      type: Number
+      type: Number,
+      default: 0
     },
     stars: {
       type: String,

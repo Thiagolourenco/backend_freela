@@ -25,7 +25,7 @@ const AdminSchema = new Schema(
       type: String,
       default: 0
     },
-    filesname: {
+    file: {
       type: String
     },
     names: {

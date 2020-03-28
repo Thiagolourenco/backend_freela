@@ -11,6 +11,8 @@ class CommentsController {
   async store(req, res) {
     const comments = await Comments.create(req.body);
 
+    req.io.emit("comment", comments);
+
     return res.json(comments);
   }
 

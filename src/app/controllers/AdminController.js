@@ -15,20 +15,13 @@ class AdminController {
   // criar um  novo usuário
 
   async store(req, res) {
-    const {
-      name,
-      email,
-      description,
-      country,
-      sports,
-      stars
-    } = await Admin.create(req.body);
-    const { filename: filesname, originalname: names } = req.file;
+    const { name, email, description, country, sports, stars } = req.body;
+    const { filename: file } = req.file;
 
     await sharp(req.file.path)
       .resize(500)
       .jpeg({ quality: 70 })
-      .toFile(resolve(req.file.destination, "resized", filesname));
+      .toFile(resolve(req.file.destination, "resized", file));
 
     fs.unlinkSync(req.file.path);
 
@@ -39,8 +32,7 @@ class AdminController {
       country,
       sports,
       stars,
-      filesname,
-      names
+      file
     });
 
     return res.json(adminStore);
