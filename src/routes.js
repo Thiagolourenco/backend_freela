@@ -16,13 +16,13 @@ const routes = new Router();
 const upload = multer(multerConfig);
 
 routes.post("/users", UserController.store);
+routes.get("/users", UserController.index);
 
 // admin
 
 routes.post("/admin", upload.single("file"), AdminController.store);
-// routes.post("/admin", AdminController.store);
 routes.get("/admin", AdminController.index);
-routes.get("/admin/:name", AdminController.show);
+routes.get("/admin/:id", AdminController.show);
 
 // upload image
 routes.post("/files/:id", FileController.store);

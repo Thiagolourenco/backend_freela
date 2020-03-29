@@ -41,8 +41,9 @@ class AdminController {
   // Realiza uma filtragem pelo nome do usuário
 
   async show(req, res) {
-    const userAdmins = await Admin.findOne({ name: req.params.name });
+    const userAdmins = await Admin.findOne({ _id: req.params.id });
 
+    console.log(userAdmins);
     return res.json(userAdmins);
   }
 }
