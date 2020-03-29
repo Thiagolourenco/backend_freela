@@ -12,12 +12,8 @@
     "sharp": "^0.25.2",
     "socket.io": "^2.3.0"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.2",
-    "sucrase": "^3.12.1"
-  },
   "scripts": {
     "dev": "nodemon src/server.js",
-    "start": "node src/server.js"
+    "start": "nodemon src/server.js"
   }
 }
