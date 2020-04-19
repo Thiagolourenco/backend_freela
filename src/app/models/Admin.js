@@ -4,33 +4,33 @@ const AdminSchema = new Schema(
   {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     email: {
-      type: String
+      type: String,
     },
     description: {
       type: String,
-      required: true
+      required: true,
     },
     country: {
       type: String,
-      required: true
+      required: true,
     },
     sports: {
       type: String,
-      required: true
+      // required: true
     },
     stars: {
       type: String,
-      default: 0
+      default: 0,
     },
     file: {
-      type: String
+      type: String,
     },
     names: {
-      type: String
-    }
+      type: String,
+    },
     // comments: [
     //   {
     //     type: Schema.Types.ObjectId,
@@ -41,7 +41,7 @@ const AdminSchema = new Schema(
   { timestamps: true, toObject: { virtuals: true }, toJSON: { virtuals: true } }
 );
 
-AdminSchema.virtual("url").get(function() {
+AdminSchema.virtual("url").get(function () {
   const url = process.env.URL || "http://localhost:3333";
   return `${url}/admin/${encodeURIComponent(this.filesname)}`;
 });
