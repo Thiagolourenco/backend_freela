@@ -16,14 +16,7 @@ class AdminController {
 
   async store(req, res) {
     const { name, email, description, country, sports, stars } = req.body;
-    const { filename: file } = req.file;
-
-    await sharp(req.file.path)
-      .resize(500)
-      .jpeg({ quality: 70 })
-      .toFile(resolve(req.file.destination, "resized", file));
-
-    fs.unlinkSync(req.file.path);
+    const { filename: file, location: urls = "" } = req.file;
 
     const adminStore = await Admin.create({
       name,
@@ -32,7 +25,7 @@ class AdminController {
       country,
       sports,
       stars,
-      file
+      urls,
     });
 
     return res.json(adminStore);

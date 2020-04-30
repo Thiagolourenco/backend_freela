@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 import express from "express";
 import mongoose from "mongoose";
 import { resolve } from "path";
@@ -24,7 +26,7 @@ class App {
     this.io = io(this.server);
 
     // this.io.on('')
-    this.io.on("connection", socket => {
+    this.io.on("connection", (socket) => {
       const { comment } = socket.handshake.query;
 
       this.connectedComments[comment] = socket.id;
