@@ -15,7 +15,7 @@ class AdminController {
   // criar um  novo usuário
 
   async store(req, res) {
-    const { name, email, description, country, sports, stars } = req.body;
+    const { name, email, description, country, sports, stars, link } = req.body;
     const { filename: file, location: urls = "" } = req.file;
 
     const adminStore = await Admin.create({
@@ -25,6 +25,7 @@ class AdminController {
       country,
       sports,
       stars,
+      link,
       urls,
     });
 
