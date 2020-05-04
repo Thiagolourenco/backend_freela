@@ -40,6 +40,22 @@ class AdminController {
     console.log(userAdmins);
     return res.json(userAdmins);
   }
+
+  async update(req, res) {
+    const { stars, valoricienes } = req.body;
+
+    const obj = {
+      stars,
+      valoricienes,
+    };
+
+     await Admin.updateOne(
+      { _id: req.params.id },
+      { $set: obj }
+    );
+
+    return res.json({ message: "Atualizado com sucesso" });
+  }
 }
 
 export default new AdminController();

@@ -23,6 +23,7 @@ routes.get("/users", UserController.index);
 routes.post("/admin", upload.single("file"), AdminController.store);
 routes.get("/admin", AdminController.index);
 routes.get("/admin/:id", AdminController.show);
+routes.put('/admin/:id', AdminController.update)
 
 // upload image
 routes.post("/files/:id", FileController.store);
