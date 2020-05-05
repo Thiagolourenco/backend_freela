@@ -21,13 +21,13 @@ const AdminSchema = new Schema(
       type: String,
       // required: true
     },
-    stars: {
+    rating: {
       type: String,
       default: 0,
     },
     valoricienes: {
       type: String,
-      default: 0
+      default: 0,
     },
     link: {
       type: String,
