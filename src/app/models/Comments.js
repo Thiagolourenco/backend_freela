@@ -4,31 +4,31 @@ const CommentsSchema = new Schema(
   {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     photoUrl: {
       type: String,
-      required: true
+      required: true,
     },
     comment: {
       type: String,
-      required: true
+      required: true,
     },
     likes: {
       type: Number,
-      default: 0
+      default: 0,
     },
-    stars: {
+    rating: {
       type: String,
       required: true,
-      default: 0
+      default: 0,
     },
     admincomment: {
-      type: String
-    }
+      type: String,
+    },
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 
