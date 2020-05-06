@@ -15,7 +15,15 @@ class AdminController {
   // criar um  novo usuário
 
   async store(req, res) {
-    const { name, email, description, country, sports, rating, link } = req.body;
+    const {
+      name,
+      email,
+      description,
+      country,
+      sports,
+      rating,
+      link,
+    } = req.body;
     const { filename: file, location: urls = "" } = req.file;
 
     const adminStore = await Admin.create({
@@ -42,17 +50,15 @@ class AdminController {
   }
 
   async update(req, res) {
-    const { stars, valoricienes } = req.body;
+    const { stars, valoricienes, media } = req.body;
 
     const obj = {
       stars,
       valoricienes,
+      media,
     };
 
-     await Admin.updateOne(
-      { _id: req.params.id },
-      { $set: obj }
-    );
+    await Admin.updateOne({ _id: req.params.id }, { $set: obj });
 
     return res.json({ message: "Atualizado com sucesso" });
   }

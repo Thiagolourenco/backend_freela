@@ -29,6 +29,10 @@ const AdminSchema = new Schema(
       type: String,
       default: 0,
     },
+    media: {
+      type: String,
+      default: 0,
+    },
     link: {
       type: String,
       default: "",
