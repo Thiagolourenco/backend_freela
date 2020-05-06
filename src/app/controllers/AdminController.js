@@ -50,10 +50,10 @@ class AdminController {
   }
 
   async update(req, res) {
-    const { stars, valoricienes, media } = req.body;
+    const { rating, valoricienes, media } = req.body;
 
     const obj = {
-      stars,
+      rating,
       valoricienes,
       media,
     };
