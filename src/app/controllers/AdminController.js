@@ -50,13 +50,15 @@ class AdminController {
   }
 
   async update(req, res) {
-    const { stars, valoricienes, media } = req.body;
+    const { rating, valoricienes, media } = req.body;
 
     const obj = {
-      stars,
+      rating,
       valoricienes,
       media,
     };
+
+    console.log("OBJ =>", obj);
 
     await Admin.updateOne({ _id: req.params.id }, { $set: obj });
 

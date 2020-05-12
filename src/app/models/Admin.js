@@ -22,7 +22,7 @@ const AdminSchema = new Schema(
       // required: true
     },
     rating: {
-      type: String,
+      type: Number,
       default: 0,
     },
     valoricienes: {
