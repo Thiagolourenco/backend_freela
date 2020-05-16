@@ -9,6 +9,8 @@ import CommentsController from "./app/controllers/CommentsController";
 import FileController from "./app/controllers/FileController";
 import LikeController from "./app/controllers/LikeController";
 
+import RootController from "./app/controllers/RootController";
+
 import multerConfig from "./config/multer";
 
 const routes = new Router();
@@ -23,7 +25,13 @@ routes.get("/users", UserController.index);
 routes.post("/admin", upload.single("file"), AdminController.store);
 routes.get("/admin", AdminController.index);
 routes.get("/admin/:id", AdminController.show);
-routes.put('/admin/:id', AdminController.update)
+routes.put("/admin/:id", AdminController.update);
+
+// ROOT
+routes.get("/root", RootController.index);
+routes.post("/root", upload.single("file"), RootController.store);
+routes.get("/root/:id", RootController.show);
+routes.put("/root/:id", RootController.update);
 
 // upload image
 routes.post("/files/:id", FileController.store);
