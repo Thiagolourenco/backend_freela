@@ -10,6 +10,9 @@ class CommentsController {
 
   async store(req, res) {
     const comments = await Comments.create(req.body);
+    const dataComment = new Date();
+
+    console.log("Data Comment", dataComment);
 
     req.io.emit("comment", comments);
 

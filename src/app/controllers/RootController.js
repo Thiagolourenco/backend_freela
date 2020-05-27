@@ -58,6 +58,8 @@ class RootController {
       })
       .exec();
 
+    req.io.emit("updateprofile", responseData);
+
     return res.json(responseData);
   }
 }

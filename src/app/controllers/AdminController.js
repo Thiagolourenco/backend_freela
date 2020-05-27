@@ -60,8 +60,13 @@ class AdminController {
 
     console.log("OBJ =>", obj);
 
-    await Admin.updateOne({ _id: req.params.id }, { $set: obj });
-
+    //  const response = await Admin.updateOne({ _id: req.params.id }, { $set: obj });
+    const response = await Admin.findByIdAndUpdate(
+      { _id: req.params.id },
+      { obj },
+      { new: true }
+    );
+    console.log("RESPONSE", response);
     return res.json({ message: "Atualizado com sucesso" });
   }
 }
