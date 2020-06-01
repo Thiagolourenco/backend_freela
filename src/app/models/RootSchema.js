@@ -36,6 +36,20 @@ const RootSchema = new Schema({
     required: false,
     default: 0,
   },
+  avaliacao: {
+    sum: {
+      type: Number,
+      default: 0,
+    },
+    quantity: {
+      type: Number,
+      default: 0,
+    },
+    rating: {
+      type: Number,
+      default: 0,
+    },
+  },
   url: {
     type: String,
     required: false,

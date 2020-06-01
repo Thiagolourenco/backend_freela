@@ -1,5 +1,50 @@
 import Comments from "../models/Comments";
-import Admin from "../models/Admin";
+import Root from "../models/RootSchema";
+
+function addGrade(avaliacao, stars) {
+  const sum = avaliacao.sum + stars;
+  const qtde = avaliacao.quantity + 1;
+
+  const final = sum / qtde;
+
+  return {
+    avaliacao: {
+      sum: sum,
+      quantity: qtde,
+      rating: final,
+    },
+  };
+}
+
+function removeGrade(avaliacao, stars) {
+  const sum = avaliacao.sum - stars;
+  const qtde = avaliacao.quantity - 1;
+
+  const final = sum / qtde;
+
+  return {
+    avaliacao: {
+      sum: sum,
+      quantity: qtde,
+      rating: final,
+    },
+  };
+}
+
+function updateGrade(avaliacao, oldStars, newStars) {
+  const sum = avaliacao.sum - oldStars + newStars;
+  const qtde = avaliacao.quantity;
+
+  const final = sum / qtde;
+
+  return {
+    avaliacao: {
+      sum: sum,
+      quantity: qtde,
+      rating: final,
+    },
+  };
+}
 
 class CommentsController {
   async index(req, res) {
@@ -12,7 +57,28 @@ class CommentsController {
     const comments = await Comments.create(req.body);
     const dataComment = new Date();
 
-    console.log("Data Comment", dataComment);
+    let rootTeste;
+    if (comments != null) {
+      try {
+        rootTeste = await Root.findById({ _id: req.body.admincomment });
+
+        console.log("ROOTE TESTE", rootTeste);
+      } catch (erro) {
+        console.log(" erRO", erro);
+      }
+
+      if (rootTeste != null) {
+        const newComment = addGrade(rootTeste.avaliacao, req.body.rating);
+        console.log("NEW COMMENT", newComment);
+
+        await Root.updateOne(
+          { _id: req.body.admincomment },
+          { $set: newComment }
+        );
+
+        console.log("UPDATE SUCCESS");
+      }
+    }
 
     req.io.emit("comment", comments);
 
