@@ -7,11 +7,28 @@ function addGrade(avaliacao, stars) {
 
   const final = (sum / qtde) * 2;
 
+  let mediaStar = 0;
+
+  if (final >= 3 && final <= 4.9) {
+    mediaStar = 2;
+  } else if (final >= 5 && final <= 6.4) {
+    mediaStar = 3;
+  } else if (final >= 6.5 && final <= 8) {
+    mediaStar = 4;
+  } else if (final >= 8.1 && final <= 10) {
+    mediaStar = 5;
+  } else {
+    console.log("CANcEL");
+  }
+
+  console.log("MEDIA => ", mediaStar);
+
   return {
     avaliacao: {
       sum: sum,
       quantity: qtde,
-      rating: final,
+      rating: mediaStar,
+      media: final,
     },
   };
 }
@@ -61,12 +78,18 @@ class CommentsController {
     if (comments != null) {
       try {
         rootTeste = await Root.findById({ _id: req.body.admincomment });
+
+        console.log("ROOTE TESTE", rootTeste);
       } catch (erro) {
         console.log(" erRO", erro);
       }
 
       if (rootTeste != null) {
+        const coment = await Comments.find();
+
+        console.log("COMMENT");
         const newComment = addGrade(rootTeste.avaliacao, req.body.rating);
+        console.log("NEW COMMENT", newComment);
 
         await Root.updateOne(
           { _id: req.body.admincomment },
