@@ -38,6 +38,8 @@ class RootController {
   async show(req, res) {
     const responseData = await Root.findOne({ _id: req.params.id });
 
+    req.io.emit("root", responseData);
+
     return res.json(responseData);
   }
 
