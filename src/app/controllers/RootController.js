@@ -49,12 +49,16 @@ class RootController {
       media,
       valoricienes,
     };
-    const _id = req.parmas.id;
     // const teste = await Root.where({ _id: req.params.id });
     // const responseData = teste.update()
 
-    const response = await Root.findByIdAndUpdate(_id, obj);
-    console.log("REPONSE ", response);
+    const responseData = await Root.where({ _id: req.params.id })
+      .update({
+        $set: { stars: stars, media: media, valoricienes: valoricienes },
+      })
+      .exec();
+
+    req.io.emit("updateprofile", responseData);
 
     return res.json(responseData);
   }

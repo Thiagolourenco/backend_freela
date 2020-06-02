@@ -49,6 +49,10 @@ const RootSchema = new Schema({
       type: Number,
       default: 0,
     },
+    media: {
+      type: Number,
+      default: 0,
+    },
   },
   url: {
     type: String,

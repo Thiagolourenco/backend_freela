@@ -5,7 +5,7 @@ function addGrade(avaliacao, stars) {
   const sum = avaliacao.sum + stars;
   const qtde = avaliacao.quantity + 1;
 
-  const final = sum / qtde;
+  const final = (sum / qtde) * 2;
 
   return {
     avaliacao: {
@@ -16,7 +16,7 @@ function addGrade(avaliacao, stars) {
   };
 }
 
-function removeGrade(avaliacao, stars) {
+function removeGrade(comment, avaliacao, stars) {
   const sum = avaliacao.sum - stars;
   const qtde = avaliacao.quantity - 1;
 
@@ -61,15 +61,12 @@ class CommentsController {
     if (comments != null) {
       try {
         rootTeste = await Root.findById({ _id: req.body.admincomment });
-
-        console.log("ROOTE TESTE", rootTeste);
       } catch (erro) {
         console.log(" erRO", erro);
       }
 
       if (rootTeste != null) {
         const newComment = addGrade(rootTeste.avaliacao, req.body.rating);
-        console.log("NEW COMMENT", newComment);
 
         await Root.updateOne(
           { _id: req.body.admincomment },
