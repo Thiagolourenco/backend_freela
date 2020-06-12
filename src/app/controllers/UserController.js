@@ -20,7 +20,7 @@ class UserController {
   }
 
   async show(req, res) {
-    const response = await User.findOne({ _id: req.parms.id });
+    const response = await User.findOne({ _id: req.params.id });
 
     return res.json(response);
   }
