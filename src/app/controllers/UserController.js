@@ -11,7 +11,7 @@ class UserController {
     const userExists = await User.findOne({ email: req.body.email });
 
     if (userExists) {
-      return res.json({ _id: userExists._id });
+      return res.json(userExists);
     }
 
     const response = await User.create(req.body);
