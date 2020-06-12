@@ -8,20 +8,21 @@ class UserController {
   }
   // Salva os dados do usuário de acordo com o que é salvo pelo google
   async store(req, res) {
-    // const userExists = await User.findOne({ email: req.body.email });
+    const userExists = await User.findOne({ email: req.body.email });
 
-    // if (userExists) {
-    //   return res.status(401).json({ message: "Usuário já existe" });
-    // }
+    if (userExists) {
+      return res.json({ _id: userExists._id });
+    }
 
-    const { idToken, email, photoUrl, name } = await User.create(req.body);
+    const response = await User.create(req.body);
 
-    return res.json({
-      idToken,
-      email,
-      photoUrl,
-      name
-    });
+    return res.json(response);
+  }
+
+  async show(req, res) {
+    const response = await User.findOne({ _id: req.parms.id });
+
+    return res.json(response);
   }
 }
 
