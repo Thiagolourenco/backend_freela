@@ -33,6 +33,7 @@ routes.get("/root", RootController.index);
 routes.post("/root", upload.single("file"), RootController.store);
 routes.get("/root/:id", RootController.show);
 routes.put("/root/:id", RootController.update);
+routes.get("/search", RootController.search)
 
 // upload image
 routes.post("/files/:id", FileController.store);

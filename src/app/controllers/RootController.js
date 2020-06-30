@@ -43,6 +43,16 @@ class RootController {
     return res.json(responseData);
   }
 
+  async search(req, res) {
+    const { name } = req.body;
+
+    const response = await Root.find({ name });
+
+    console.log("RESPONSE", response);
+
+    return res.json({ ok: true });
+  }
+
   async update(req, res) {
     const { stars, media, valoricienes } = req.body;
 
